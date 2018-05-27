@@ -3,7 +3,7 @@ var http = require('http'),
     server = http.createServer();
 
 server.on('request', function (request, response) {
-    if(request.method === 'GET' & request.url === '/') {
+    if(request.method === 'GET' & request.url === '/content') {
         response.setHeader("Content-Type", "text/html:charset=utf-8");
         fs.readFile('./index.html', 'utf-8', function(err, data) {
             response.write(data);
