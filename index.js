@@ -1,16 +1,19 @@
 var http = require('http'),
+    fs = require('fs'),
     server = http.createServer();
 
 server.on('request', function (request, response) {
-    response.setHeader("Content-Type", "text/html:charset=utf-8");
-    
-    if(request.method === 'GET' & request.url === '/hello') {
-        response.write('<h1>Hello World</h1>');
+    if(request.method === 'GET' & request.url === '/') {
+        response.setHeader("Content-Type", "text/html:charset=utf-8");
+        response.write(data);
         response.end();
     } else {
+        response.setHeader("Content-Type", 'image/jpg');
         response.statusCode = 404;
-            response.write('<h1>404: Zła ścieżka!</h1>');
+        fs.readFile('./404.jpg', function(err, data) {
+            response.write(data);
             response.end();
+        });
     }
 });
 
